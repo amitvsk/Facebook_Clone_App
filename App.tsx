@@ -28,6 +28,9 @@ import {
 import Login from './src/Screens/Login';
 
 import Signup from './src/Screens/Signup';
+import HomeScreen from './src/Screens/HomeScreen';
+import TopBar from './src/Navigation/TopBar';
+import MainScreen from './src/Screens/MainScreen';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -79,6 +82,8 @@ function App(): React.JSX.Element {
       <Stack.Navigator screenOptions={{headerShown:false}}  >
         <Stack.Screen  name="Login" component={Login} />
         <Stack.Screen  name="Signup" component={Signup} />
+        {/* <Stack.Screen  name="HomeScreen" component={HomeScreen} /> */}
+        <Stack.Screen  name="MainScreen" component={MainScreen} />
       </Stack.Navigator>
     </View>
   </NavigationContainer>

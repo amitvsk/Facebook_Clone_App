@@ -10,7 +10,8 @@ import Entypo from 'react-native-vector-icons/dist/Entypo';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import EvilIcons from 'react-native-vector-icons/dist/EvilIcons';
 import Octicons from 'react-native-vector-icons/dist/Octicons';
-
+import Fontisto from 'react-native-vector-icons/Fontisto'
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 const VectorIcon = props => {
   const {onPress, name, size, color, type,style} = props;
   return (
@@ -22,9 +23,18 @@ const VectorIcon = props => {
           size={size}
           color={color}
         />
-      ) : type == 'FontAwesome' ? (
+      ): type == 'SimpleLineIcons' ? (
+        <SimpleLineIcons onPress={onPress} name={name} size={size} color={color} />
+      )  : type == 'FontAwesome' ? (
         <FontAwesome onPress={onPress} name={name} size={size} color={color} />
-      )  : type == 'FontAwesome5' ? (
+      ) : type == 'Fontisto' ? (
+        <Fontisto
+          onPress={onPress}
+          name={name}
+          size={size}
+          color={color}
+        />
+      ) : type == 'FontAwesome5' ? (
         <FontAwesome5
           onPress={onPress}
           name={name}

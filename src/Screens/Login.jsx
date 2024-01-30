@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import React, {useState} from 'react';
 import VectorIcon from '../VectorIcon';
@@ -15,15 +16,22 @@ import metaLogo from '../assets/Meta-Logo.png'
 const Login = ({navigation}) => {
   const [email, setemail] = useState('');
   const [Password, setpassword] = useState('');
-
+ const loginUser=()=>{
+  if(!email) return Alert.alert("Please enter your mobile number or email");
+  if(!Password) return Alert.alert("Please enter your password");
+  return navigation.navigate("MainScreen");
+ }
   return (
     <View style={style.container}>
-      <VectorIcon
+      <TouchableOpacity onPress={()=>navigation.navigate("Signup")}>
+        <VectorIcon
         name="arrow-back"
         type="Ionicons"
         color={color.black}
         size={20}
       />
+      </TouchableOpacity>
+      
       <View style={style.subCatainer}>
         <Image source={logo} style={style.LogoStyle} />
         <TextInput
@@ -38,7 +46,7 @@ const Login = ({navigation}) => {
           onChange={Password => setpassword(Password)}
           style={style.inputBox}
         />
-        <TouchableOpacity style={style.loginButton}>
+        <TouchableOpacity style={style.loginButton} onPress={()=>loginUser()}>
           <Text style={style.login}>Log in</Text>
         </TouchableOpacity>
         <TouchableOpacity>

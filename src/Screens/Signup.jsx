@@ -18,12 +18,7 @@ const Signup = ({navigation}) => {
     const [cPassword, setcpassword] = useState('');
   return (
     <View style={style.container}>
-    {/* <VectorIcon
-      name="arrow-back"
-      type="Ionicons"
-      color={color.black}
-      size={20}
-    /> */}
+ 
     <View style={style.subCatainer}>
       <Image source={logo} style={style.LogoStyle} />
       <TextInput
