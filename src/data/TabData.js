@@ -10,47 +10,65 @@ export const TabData=[{
     id:1,
     name:"HomeScreen",
     route:HomeScreen,
-    iconName:"home",
-    iconType:"Entypo",
-    size:25
+    activeIconName:"home",
+    activeIconType:"Foundation",
+    size:30,
+    unFocusSize:25,
+    unActiveIconName:"home",
+    unActiveIconType:"Octicons",
 },
 {
     id:2,
     name:"Friends",
     route:Friends,
-    iconName:"people-outline",
-    iconType:"Ionicons",
-    size:25
+    unActiveIconName:"people-outline",
+    unActiveIconType:"Ionicons",
+    size:25,
+    unFocusSize:25,
+    activeIconName:"people",
+    activeIconType:"Ionicons"
 },
 {
     id:3,
     name:"WatchScreen",
     route:WatchScreen,
-    iconName:"ondemand-video",
-    iconType:"MaterialIcons",
-    size:25
+    unActiveIconName:"ondemand-video",
+    unactiveIconType:"MaterialIcons",
+    size:26,
+    unFocusSize:25,
+    activeIconName:"youtube-tv",
+    activeIconType:"MaterialCommunityIcons"
 },
 {
     id:4,
     name:"MarketPlace",
     route:MarketPlace,
-    iconName:"storefront-outline",
-    iconType:"Ionicons",
-    size:25
+    unActiveIconName:"storefront-outline",
+    unActiveIconType:"Ionicons",
+    size:25,
+    unFocusSize:25,
+    activeIconName:"storefront",
+    activeIconType:"Ionicons"
 },
 {
     id:5,
     name:"Notification",
     route:Notification,
-    iconName:"bell",
-    iconType:"SimpleLineIcons",
-    size:25
+    unActiveIconName:"bell",
+    unActiveIconType:"SimpleLineIcons",
+    size:25,
+    unFocusSize:25,
+    activeIconName:"bell-fill",
+    activeIconType:"Octicons"
 },
 {
     id:6,
     name:"ProfileScreen",
     route:ProfileScreen,
-    iconName:"user",
-    iconType:"AntDesign",
-    size:25
+    unActiveIconName:"user",
+    unActiveIconType:"AntDesign",
+    size:25,
+    unFocusSize:25,
+    activeIconName:"user",
+    activeIconType:"FontAwesome"
 }]

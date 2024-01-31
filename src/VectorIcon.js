@@ -12,6 +12,7 @@ import EvilIcons from 'react-native-vector-icons/dist/EvilIcons';
 import Octicons from 'react-native-vector-icons/dist/Octicons';
 import Fontisto from 'react-native-vector-icons/Fontisto'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
+import Foundation from 'react-native-vector-icons/Foundation';
 const VectorIcon = props => {
   const {onPress, name, size, color, type,style} = props;
   return (
@@ -27,6 +28,8 @@ const VectorIcon = props => {
         <SimpleLineIcons onPress={onPress} name={name} size={size} color={color} />
       )  : type == 'FontAwesome' ? (
         <FontAwesome onPress={onPress} name={name} size={size} color={color} />
+      ) : type == 'Foundation' ? (
+        <Foundation onPress={onPress} name={name} size={size} color={color} />
       ) : type == 'Fontisto' ? (
         <Fontisto
           onPress={onPress}

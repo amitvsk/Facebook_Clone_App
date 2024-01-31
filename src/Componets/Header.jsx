@@ -28,7 +28,8 @@ const style=StyleSheet.create({
     container:{
         padding:16,
         flexDirection:"row",
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        backgroundColor:color.white
     },
     searcbg:{
         backgroundColor:color.lightgrey,

@@ -16,11 +16,13 @@ const Tab = createMaterialTopTabNavigator();
 const TopBar = () => {
   return (
     <Tab.Navigator screenOptions={()=>({
-        tabBarShowLabel:false
+        tabBarShowLabel:false,
+        tabBarActiveTintColor:color.primaryColor,
+        tabBarInactiveTintColor:color.grey
     })}>
         {TabData?.map((item)=>{
             return (
-                   <Tab.Screen name={item?.name} key={item?.id} component={item?.route} options={{tabBarIcon:()=>(<VectorIcon name={item?.iconName} type={item?.iconType} size={item?.size} color={color.black}/>)}}/>
+                   <Tab.Screen name={item?.name} key={item?.id} component={item?.route} options={{tabBarIcon:({color,focused})=>(<VectorIcon name={focused ?  item?.activeIconName:item?.unActiveIconName} type={focused? item?.activeIconType:item?.unActiveIconType} size={focused? item?.size: item?.unFocusSize} color={color}/>)}}/>
             )
         })}
  
