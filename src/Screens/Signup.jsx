@@ -5,47 +5,76 @@ import {
     StyleSheet,
     TextInput,
     TouchableOpacity,
+    Alert,
   } from 'react-native';
 import React, { useState } from 'react'
 import VectorIcon from '../VectorIcon';
 import {color} from '../Color';
 import logo from '../assets/OIP.jpg';
 import metaLogo from '../assets/Meta-Logo.png'
+import auth from '@react-native-firebase/auth';
+
 const Signup = ({navigation}) => {
-    const [fullname, setfullname] = useState('');
+    const [displayName, setfullname] = useState('');
     const [email, setemail] = useState('');
     const [Password, setpassword] = useState('');
     const [cPassword, setcpassword] = useState('');
+
+  const register=async()=>{
+  if(!email||!Password) return Alert.alert("Please fill the blank");
+  if(Password!==cPassword) return Alert.alert("Confirm Password did not match")
+    try {
+      auth().createUserWithEmailAndPassword(email, Password,displayName)
+  .then(() => {
+     Alert.alert('User account created');
+     return  navigation.navigate("Login")
+  })
+  .catch(error => {
+    if (error.code === 'auth/email-already-in-use') {
+      return Alert.alert('That email address is already!');
+    }
+
+    if (error.code === 'auth/invalid-email') {
+      return Alert.alert('That email address is invalid!');
+    }
+
+    console.error(error);
+  });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <View style={style.container}>
  
     <View style={style.subCatainer}>
       <Image source={logo} style={style.LogoStyle} />
       <TextInput
-        placeholder="Full Name"
-        value={fullname}
-        onChange={fullname => setfullname(fullname)}
-        style={style.inputBox}
-      />
-      <TextInput
-        placeholder="Mobile number or email"
-        value={email}
-        onChange={email => setemail(email)}
-        style={style.inputBox}
-      />
-      <TextInput
-        placeholder="Password"
-        value={Password}
-        onChange={Password => setpassword(Password)}
-        style={style.inputBox}
-      />
-        <TextInput
-        placeholder="Confirm Password"
-        value={cPassword}
-        onChange={Password => setcpassword(Password)}
-        style={style.inputBox}
-      />
-      <TouchableOpacity style={style.loginButton}>
+  placeholder="Full Name"
+  value={displayName}
+  onChangeText={text => setfullname(text)} // Use onChangeText
+  style={style.inputBox}
+/>
+<TextInput
+  placeholder="Mobile number or email"
+  value={email}
+  onChangeText={text => setemail(text)} // Use onChangeText
+  style={style.inputBox}
+/>
+<TextInput
+  placeholder="Password"
+  value={Password}
+  onChangeText={text => setpassword(text)} // Use onChangeText
+  style={style.inputBox}
+/>
+<TextInput
+  placeholder="Confirm Password"
+  value={cPassword}
+  onChangeText={text => setcpassword(text)} // Use onChangeText
+  style={style.inputBox}
+/>
+
+      <TouchableOpacity style={style.loginButton} onPress={register}>
         <Text style={style.login}>Create Account</Text>
       </TouchableOpacity>
       {/* <TouchableOpacity>

@@ -1,127 +1,63 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import { StatusBar, View, StyleSheet, Text } from 'react-native';
+// import auth from '@react-native-firebase/auth';
 import Login from './src/Screens/Login';
-
 import Signup from './src/Screens/Signup';
-import HomeScreen from './src/Screens/HomeScreen';
-import TopBar from './src/Navigation/TopBar';
 import MainScreen from './src/Screens/MainScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/auth';
+// import '@react-native-firebase/firestore';
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+const RNfirebaseConfig = {
+  apiKey: "AIzaSyB0NLSfcwYNdsRiFMJSPY0qr_hQTozy2eE",
+  authDomain: "facebook-clone-27325.firebaseapp.com",
+  projectId: "facebook-clone-27325",
+  storageBucket: "facebook-clone-27325.appspot.com",
+  messagingSenderId: ".....",
+  appId: "......"
+};
+
+let app;
+if (firebase.apps.length === 0) {
+    app = firebase.initializeApp(RNfirebaseConfig )
+} else {
+    app = firebase.app()
 }
+
+
+const auth = firebase.auth();
 
 function App(): React.JSX.Element {
   const Stack = createStackNavigator();
 
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+ 
 
   return (
-   
     <NavigationContainer>
-    <StatusBar
-      barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-      backgroundColor={backgroundStyle.backgroundColor}
-    />
-    <View style={[styles.container, backgroundStyle,{ backgroundColor:backgroundStyle.backgroundColor}]}>
-      <Stack.Navigator screenOptions={{headerShown:false}}  >
-        <Stack.Screen  name="Login" component={Login} />
-        <Stack.Screen  name="Signup" component={Signup} />
-        {/* <Stack.Screen  name="HomeScreen" component={HomeScreen} /> */}
-        <Stack.Screen  name="MainScreen" component={MainScreen} />
-      </Stack.Navigator>
-    </View>
-  </NavigationContainer>
-   
+      <StatusBar barStyle="dark-content" />
+      <View style={styles.container}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Signup" component={Signup} />
+          <Stack.Screen name="MainScreen" component={MainScreen} />
+        </Stack.Navigator>
+      </View>
+    </NavigationContainer>
   );
 }
-{/* <NavigationContainer>
-<SafeAreaView style={backgroundStyle}>
-  <StatusBar
-    barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-    backgroundColor={backgroundStyle.backgroundColor}
-  />
 
-  <Stack.Navigator  initialRouteName="Login">
-    <Stack.Screen name="Login" component={Login} />
-  
-  </Stack.Navigator>
-</SafeAreaView>
-</NavigationContainer> */}
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
   container: {
     flex: 1,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
