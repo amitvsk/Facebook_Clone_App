@@ -1,16 +1,19 @@
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import React from 'react'
 import { color } from '../Color'
+import { useUser } from './UserProvider'
 
 const ProfileScreen = ({navigation}) => {
-  const logout=()=>{
+  const {logout}=useUser()
+  const logout2=()=>{
     Alert.alert("Successfully logout");
+    logout()
     return navigation.navigate("Login")
   }
   return (
     <View style={style.container}>
       <Text style={style.title}>Profile Screen</Text>
-      <TouchableOpacity style={style.btn} onPress={logout}>
+      <TouchableOpacity style={style.btn} onPress={logout2}>
          <Text style={style.logout}>Logout</Text>
       </TouchableOpacity>
      

@@ -9,6 +9,8 @@ import MainScreen from './src/Screens/MainScreen';
 
 import firebase from '@react-native-firebase/app';
 import '@react-native-firebase/auth';
+import FlashScreen from './src/Screens/FlashScreen';
+import { UserProvider } from './src/Screens/UserProvider';
 // import '@react-native-firebase/firestore';
 
 const RNfirebaseConfig = {
@@ -37,16 +39,19 @@ function App(): React.JSX.Element {
  
 
   return (
+    <UserProvider>
     <NavigationContainer>
       <StatusBar barStyle="dark-content" />
       <View style={styles.container}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Flash" component={FlashScreen} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Signup" component={Signup} />
           <Stack.Screen name="MainScreen" component={MainScreen} />
         </Stack.Navigator>
       </View>
     </NavigationContainer>
+    </UserProvider>
   );
 }
 

@@ -13,11 +13,12 @@ import {color} from '../Color';
 import logo from '../assets/OIP.jpg';
 import metaLogo from '../assets/Meta-Logo.png';
 import auth from '@react-native-firebase/auth';
+import { useUser } from './UserProvider';
 
 const Login = ({navigation}) => {
   const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
-
+const {logInUser}=useUser()
   const [errorMessage, setErrorMessage] = useState('');
 
   const loginUser = async () => {
@@ -26,19 +27,31 @@ const Login = ({navigation}) => {
       return;
     }
     try {
-   let am= await auth().signInWithEmailAndPassword(email, password);
-      // Login successful
-      console.log('Logged in!',am);
-      setErrorMessage("")
+      let am = await auth().signInWithEmailAndPassword(email, password);
+      setErrorMessage('');
+      logInUser(am)
       navigation.navigate('MainScreen');
-      // Navigate to your app's main screen or do something else
     } catch (error) {
-      // Handle errors here
       setErrorMessage(error.message);
     }
   };
 
-  console.log("errr",errorMessage);
+  const forgetPassword = async () => {
+    try {
+      if (!email) return setErrorMessage('Please enter email id');
+      await auth().sendPasswordResetEmail(email);
+      Alert.alert(
+        'Check your email',
+        'A link to reset your password has been sent to your email check inbox or spam',
+      );
+      setErrorMessage("")
+    } catch (error) {
+      setErrorMessage(error.message);
+      console.log(error);
+    }
+  };
+
+  console.log('errr', errorMessage);
   return (
     <View style={style.container}>
       <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
@@ -52,24 +65,26 @@ const Login = ({navigation}) => {
 
       <View style={style.subCatainer}>
         <Image source={logo} style={style.LogoStyle} />
-        <Text style={{color:"red",margin:5}}>{errorMessage}</Text>
+        <Text style={{color: 'red', margin: 5}}>{errorMessage}</Text>
         <TextInput
           placeholder="Mobile number or email"
           value={email}
           onChangeText={text => setemail(text)} // Changed to onChangeText
           style={style.inputBox}
         />
-       <TextInput
-  placeholder="Password"
-  value={password} // Use the camelCase variable
-  onChangeText={text => setPassword(text)} // Update to use the camelCase setter function
-  style={style.inputBox}
-/>
+        <TextInput
+          placeholder="Password"
+          value={password} // Use the camelCase variable
+          onChangeText={text => setPassword(text)} // Update to use the camelCase setter function
+          style={style.inputBox}
+        />
         <TouchableOpacity style={style.loginButton} onPress={() => loginUser()}>
           <Text style={style.login}>Log in</Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={style.forgetPwd}>Forget Password?</Text>
+          <Text style={style.forgetPwd} onPress={forgetPassword}>
+            Forget Password?
+          </Text>
         </TouchableOpacity>
       </View>
 
