@@ -1,12 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import HomeScreen from '../Screens/HomeScreen';
-import Friends from '../Screens/Friends';
-import WatchScreen from '../Screens/WatchScreen';
-import Notification from '../Screens/Notification';
-import ProfileScreen from '../Screens/ProfileScreen';
-import MarketPlace from '../Screens/MarketPlace';
+
 import VectorIcon from '../VectorIcon';
 import { color } from '../Color';
 import { TabData } from '../data/TabData';

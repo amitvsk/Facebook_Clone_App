@@ -11,6 +11,8 @@ import firebase from '@react-native-firebase/app';
 import '@react-native-firebase/auth';
 import FlashScreen from './src/Screens/FlashScreen';
 import { UserProvider } from './src/Screens/UserProvider';
+import Chat from './src/Screens/Chat';
+import ChatFriend from './src/Componets/ChatFriend';
 // import '@react-native-firebase/firestore';
 
 const RNfirebaseConfig = {
@@ -48,6 +50,8 @@ function App(): React.JSX.Element {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Signup" component={Signup} />
           <Stack.Screen name="MainScreen" component={MainScreen} />
+          <Stack.Screen name="Chat" component={Chat} />
+          <Stack.Screen name="ChatFriend" component={ChatFriend} />
         </Stack.Navigator>
       </View>
     </NavigationContainer>

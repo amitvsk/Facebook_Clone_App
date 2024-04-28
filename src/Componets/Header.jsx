@@ -1,16 +1,19 @@
-import { View, Text, Image ,StyleSheet} from 'react-native'
+import { View, Text, Image ,StyleSheet, TouchableOpacity} from 'react-native'
 import React from 'react'
 import fblogo from '../assets/fblogo.png'
 import VectorIcon from '../VectorIcon'
 import { color } from '../Color'
-const Header = () => {
+const Header = ({navigation}) => {
   return (
     <View style={style.container}>
         <Image source={fblogo} style={style.fblogo} /> 
         <View style={style.headIcon}>
         <VectorIcon name="add" type="MaterialIcons" size={22} style={style.searcbg}/>
         <VectorIcon name="search" type="FontAwesome5" size={22} style={style.searcbg}/>
-             <VectorIcon name="messenger" type="Fontisto" size={22} style={style.searcbg}/>
+<TouchableOpacity onPress={()=>navigation.navigate("Chat")}>
+<VectorIcon name="messenger" type="Fontisto" size={22} style={style.searcbg}/>
+</TouchableOpacity>
+           
         </View>
      
     </View>

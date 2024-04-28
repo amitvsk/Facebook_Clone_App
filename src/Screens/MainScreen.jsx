@@ -3,10 +3,10 @@ import React from 'react'
 import Header from '../Componets/Header'
 import TopBar from '../Navigation/TopBar'
 
-const MainScreen = () => {
+const MainScreen = ({navigation}) => {
   return (
     <>
-     <Header/>
+     <Header navigation={navigation}/>
      <TopBar/>
     </>
   )

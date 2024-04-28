@@ -5,12 +5,12 @@ import SubHeader from '../Componets/SubHeader'
 import Stories from '../Componets/Stories'
 import Post from '../Componets/Post'
 import { ScrollView } from 'react-native-gesture-handler'
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   return (
     <ScrollView >
-       <SubHeader/>
-     <Stories/>
-     <Post/>
+       <SubHeader  navigation={navigation}/>
+     <Stories  navigation={navigation}/>
+     <Post  navigation={navigation}/>
     </ScrollView>
   )
 }

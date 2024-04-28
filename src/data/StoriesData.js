@@ -16,29 +16,41 @@ export const StoriesData = [
     name: 'Sanoj Kumar',
     profile: profile,
     story: Story,
+    isActive:true
   },
   {
     id:2,
     name: 'Ashish Yadav',
     profile: profile2,
     story: Story2,
+    isActive:true
   },
   {
     id:3,
     name: 'Sanoj Kumar',
     profile: profile3,
     story: Story3,
+    isActive:true
   },
   {
     id:4,
     name: 'Sanoj Kumar',
     profile: profile4,
     story: Story4,
+    isActive:true
   },
   {
     id:5,
     name: 'Sanoj Kumar',
     profile: profile5,
     story: Story5,
+    isActive:false
+  },
+  {
+    id:6,
+    name: 'Brijesh Vishwakarma',
+    profile: profile3,
+    story: Story3,
+    isActive:false
   },
 ];
